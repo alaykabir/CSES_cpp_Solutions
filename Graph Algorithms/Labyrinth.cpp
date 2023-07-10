@@ -65,8 +65,6 @@ int main() {
             int childy = pary + dy[k];
 
             if(isValid(childx, childy) && dis + 1 < dist[childx][childy]){
-
-                way += direction(childx, childy, parx, pary);
                 dist[childx][childy] = dis + 1;
 
                 if(childx == bx && childy == by){
@@ -76,7 +74,7 @@ int main() {
                     break; 
                 }
 
-                st.insert({dis + 1, {{childx, childy}, way}});
+                st.insert({dis + 1, {{childx, childy}, way += direction(childx, childy, parx, pary)}});
             }
         }
         if(flag) break;
