@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
  
 #define int long long
@@ -29,42 +30,38 @@ using namespace std;
 #define forj(a,b) for(auto j=a;j<b;++j)
 #define forjr(a,b) for(auto j=a;j>=b;--j)
  
-int n, x, ans = 0;
-int coins[100];
-bool flag = false;
-// vector<int> prev(1000001, 0);
-// vector<int> curr(1000001, 0);
+int n, x;
+vector<int> coins(100);
+
  
 int32_t main(){
 	fastio
+    
 	cin >> n >> x;
     for(int i = 0; i < n; i++) cin >> coins[i];
-
     vector<int> prev(1000001, 0);
     vector<int> curr(1000001, 0);
 
-    for(int tar = 1; tar <= x; tar++){
-        if(tar % coins[0] == 0){
-            prev[tar] = 1;
-        }
+    for(int tar = 0; tar <= x; tar++){
+        if(tar % coins[0] == 0) prev[tar] = tar / coins[0];
+        else prev[tar] = 1e9;
     }
-
-    prev[0] = curr[0] = 1;
-
+    
+ 
     for(int ind = 1; ind < n; ind++){
-        for(int tar = 1; tar <= x; tar++){
+        for(int tar = 0; tar <= x; tar++){
             int notake = prev[tar];
-
-            int take = 0;
+ 
+            int take = 1e9;
             if(coins[ind] <= tar){
-                take = curr[tar - coins[ind]];
+                take = 1 + curr[tar - coins[ind]];
             }
-
-            curr[tar] = (take + notake) % mod;
+ 
+            curr[tar] = min(take, notake);
         }
 
         prev = curr;
     }
-
-    cout << prev[x] <<endl;
+    if(prev[x] != 1e9) cout << prev[x] << endl;
+    else cout << -1 << endl;
 }
