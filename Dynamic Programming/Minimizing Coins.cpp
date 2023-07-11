@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
  
 #define int long long
@@ -29,37 +30,34 @@ using namespace std;
 #define forj(a,b) for(auto j=a;j<b;++j)
 #define forjr(a,b) for(auto j=a;j>=b;--j)
  
+int n, x;
+vector<int> coins(100);
 
-// bool flag = false;
-// vector<int> prev(1000001, 0);
-// vector<int> curr(1000001, 0);
-
-int memo(int ind, int tar, vector<int>& coins, vector<vector<int>>& dp){
-    if(ind == 0){
-        if(tar % coins[0] == 0){
-            return tar / coins[0];
-        }
-        else return 1e9;
-    }
-    if(dp[ind][tar] != -1) return dp[ind][tar];
-
-    int notake = memo(ind - 1, tar, coins, dp);
-    
-    int take = 1e9;
-    if(coins[ind] <= tar) take = 1 + memo(ind, tar - coins[ind], coins, dp);
-
-    return dp[ind][tar] = min(take, notake);
-
-}
- 
 int32_t main(){
 	fastio
-    int n, x;
-    vector<int> coins(n);
+    
 	cin >> n >> x;
     for(int i = 0; i < n; i++) cin >> coins[i];
-
-    vector<vector<int>> dp(n, vector<int>(x + 1, -1));
-
-    cout << memo(n - 1, x, coins, dp);
+ 
+    vector<vector<int>> dp(n, vector<int>(x + 1, 0));
+ 
+    for(int tar = 0; tar <= x; tar++){
+        if(tar % coins[0] == 0) dp[0][tar] = tar / coins[0];
+        else dp[0][tar] = 1e9;
+    }
+ 
+    for(int ind = 1; ind < n; ind++){
+        for(int tar = 0; tar <= x; tar++){
+            int notake = dp[ind - 1][tar];
+ 
+            int take = 1e9;
+            if(coins[ind] <= tar){
+                take = 1 + dp[ind][tar - coins[ind]];
+            }
+ 
+            dp[ind][tar] = min(take, notake);
+        }
+    }
+ 
+    cout << dp[n - 1][x] << endl;
 }
