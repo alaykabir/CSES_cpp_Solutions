@@ -62,24 +62,4 @@ int32_t main(){
     vector<vector<int>> dp(n, vector<int>(x + 1, -1));
 
     cout << memo(n - 1, x, coins, dp);
-
-    // for(int tar = 0; tar <= x; tar++){
-    //     if(tar % coins[0] == 0) dp[0][tar] = tar / coins[0];
-    //     else dp[0][tar] = 1e9;
-    // }
-
-    // for(int ind = 1; ind < n; ind++){
-    //     for(int tar = 0; tar <= x; tar++){
-    //         int notake = dp[ind - 1][tar];
-
-    //         int take = 1e9;
-    //         if(coins[ind] <= tar){
-    //             take = 1 + dp[ind][tar - coins[ind]];
-    //         }
-
-    //         dp[ind][tar] = min(take, notake);
-    //     }
-    // }
-
-    // cout << dp[n - 1][x] << endl;
 }
