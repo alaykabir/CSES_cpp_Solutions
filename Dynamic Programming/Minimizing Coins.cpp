@@ -59,25 +59,27 @@ int32_t main(){
 	cin >> n >> x;
     for(int i = 0; i < n; i++) cin >> coins[i];
 
-    vector<vector<int>> dp(n, vector<int>(x + 1, 0));
+    vector<vector<int>> dp(n, vector<int>(x + 1, -1));
 
-    for(int tar = 0; tar <= x; tar++){
-        if(tar % coins[0] == 0) dp[0][tar] = tar / coins[0];
-        else dp[0][tar] = 1e9;
-    }
+    cout << memo(n - 1, x, coins, dp);
 
-    for(int ind = 1; ind < n; ind++){
-        for(int tar = 0; tar <= x; tar++){
-            int notake = dp[ind - 1][tar];
+    // for(int tar = 0; tar <= x; tar++){
+    //     if(tar % coins[0] == 0) dp[0][tar] = tar / coins[0];
+    //     else dp[0][tar] = 1e9;
+    // }
 
-            int take = 1e9;
-            if(coins[ind] <= tar){
-                take = 1 + dp[ind][tar - coins[ind]];
-            }
+    // for(int ind = 1; ind < n; ind++){
+    //     for(int tar = 0; tar <= x; tar++){
+    //         int notake = dp[ind - 1][tar];
 
-            dp[ind][tar] = min(take, notake);
-        }
-    }
+    //         int take = 1e9;
+    //         if(coins[ind] <= tar){
+    //             take = 1 + dp[ind][tar - coins[ind]];
+    //         }
 
-    cout << dp[n - 1][x] << endl;
+    //         dp[ind][tar] = min(take, notake);
+    //     }
+    // }
+
+    // cout << dp[n - 1][x] << endl;
 }
