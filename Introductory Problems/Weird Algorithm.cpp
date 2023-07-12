@@ -37,7 +37,6 @@ int32_t main(){
     cout << n << " ";
     while(true){
         if(n == 1){
-            cout << 1;
             break;
         }
 
