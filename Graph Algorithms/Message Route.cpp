@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-
+ 
 #define int long long
 #define endl "\n"
 #define spc " "
@@ -21,50 +21,57 @@
 #define lb lower_bound  // First element NOT LESS than val
 #define ub upper_bound  // First element GREATER than val
 #define sz(q) (int)(q.size())
-
+ 
 using namespace std;
-
+ 
 #define fori(a,b) for(auto i=a;i<b;++i)
 #define foir(a,b) for(auto i=a;i>=b;--i)
 #define forj(a,b) for(auto j=a;j<b;++j)
 #define forjr(a,b) for(auto j=a;j>=b;--j)
-
+ 
 int n, m, ans = 0;
 bool flag = false;
-vector<vector<int>> graph(1e5 + 1);
-
+vector<vector<int>> graph(100001);
+priority_queue<int, vector<int>, greater<int>> pq;
+bool vis[100001];
+// int graph[100001][101];
+int dist[100001];
+ 
 int32_t main(){
 	fastio
 	cin >> n >> m;
-
-    for (int i = 0 ; i < n ; i++) {
+ 
+    for (int i = 1; i <= m; i++) {
         int u, v;
         cin >> u >> v;
         graph[u].push_back(v);
-        graph[v].push_back(u);
     }
 
-    int dist[n];
-    for(int i = 0; i < n; i++) dist[i] = 1e9;
+    for(int i = 0; i <= n; i++) dist[i] = 1e9;
 
-    queue<int> q;
-    q.push(1);
+    pq.push(1);
+    vis[1] = true;
     dist[1] = 1;
-
-    while(!q.empty()){
-        int par = q.front();
-        q.pop();
-
+ 
+    while(!pq.empty()){
+        int par = pq.top();
+        // int dis = node.first;
+        // int par = node.second;
+        // cout << dis << " " << par << endl;
+        pq.pop();
+ 
         for(auto it : graph[par]){
-            if(dist[par] + 1 < dist[it]){
-                dist[it] = dist[par] + 1;
-
+            int child = it;
+            if(!vis[child]){
+                dist[child] = dist[par] + 1;
+                vis[child] = true;
                 // if(it == n){
-                //     ans = dist[it];
+                //     ans = dist[child];
                 //     flag = true;
                 //     break;
                 // }
-                q.push(it);
+
+                pq.push(child);
             }
         }
         // if(flag) break;
