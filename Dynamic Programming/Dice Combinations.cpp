@@ -36,7 +36,7 @@ int memo(int n, vi &arr, vi&dp){
     int ans = 0;
     for(int ind = 0; ind < 6; ind++){
         if(arr[ind] <= n){
-           ans = ans + memo(n - arr[ind], arr, dp);
+           ans = (ans + memo(n - arr[ind], arr, dp)) % mod;
         }
     }
 
