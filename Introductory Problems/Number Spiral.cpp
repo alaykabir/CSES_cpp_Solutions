@@ -30,7 +30,7 @@ using namespace std;
 #define forjr(a,b) for(auto j=a;j>=b;--j)
 
 int diag(int x){
-    return (x*x - x + 1);
+    return ((x*x) - x + 1);
 }
 
 void solve(){
@@ -42,25 +42,14 @@ void solve(){
         cout << diag(x) << endl;
         return;
     }
-    int nx, ny;
+
     if(x < y){
-        nx = y;
-        int ans = diag(y);
-        while(nx > x){
-            ans++;
-            nx--;
-        }
-        cout << ans << endl;
+        cout << diag(y) + (y - x) << endl;
         return;
     }
     if(x > y){
-        ny = x;
-        int ans = diag(x);
-        while(ny > y){
-            ans++;
-            ny--;
-        }
-        cout << ans << endl;
+        if(x % 2 == 0) cout << diag(x) + (x - y) << endl;
+        else cout << diag(x) - (x - y) << endl;
         return;
     }
 }
