@@ -30,11 +30,7 @@ using namespace std;
 #define forjr(a,b) for(auto j=a;j>=b;--j)
 
 int diag(int x){
-    int ans = 1;
-    for(int i = 1; i < x; i++){
-        ans += 2 * i;
-    }
-    return ans;
+    return (x*x - x + 1);
 }
 
 void solve(){
