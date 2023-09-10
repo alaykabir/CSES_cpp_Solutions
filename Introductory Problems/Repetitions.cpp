@@ -48,7 +48,7 @@ void solve(){
         }
     }
 
-    cout << maxi;
+    cout << max(maxi, ans);
 }
 
 int32_t main(){
