@@ -39,7 +39,8 @@ void solve(){
     int ans = 0;
     fori(1, n){
         if(arr[i] < arr[i - 1]){
-            ans += abs(arr[i] - arr[i - 1]);
+            ans += (arr[i - 1] - arr[i]);
+            arr[i] += (arr[i - 1] - arr[i]);
         }
     }
 
