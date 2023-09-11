@@ -43,6 +43,8 @@ void solve(){
         return;
     }
 
+    cout << "YES" << endl;
+
     int half_sum = sum / 2;
     
 
@@ -52,9 +54,10 @@ void solve(){
     cout << n / 2  << endl;
 
     for(int i = 1; i <= pairs; i++){
-        cout << i << " " << n - i + 1;
+        cout << i << " " << n - i + 1 << " ";
     }
-    if(rem) cout << " " << rem;
+
+    if(rem) cout << rem;
     cout << endl;
 
     if(n % 2 == 0) cout << n / 2 << endl;
