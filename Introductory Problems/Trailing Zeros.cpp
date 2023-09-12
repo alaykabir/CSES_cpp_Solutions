@@ -37,12 +37,7 @@ void solve(){
     int n;
     cin >> n;
  
-    int ans = 1;
-    for(int i = 0; i < n; i++){
-        ans = (ans * 2) % mod;
-    }
- 
-    cout << ans;
+    cout << (n / 5) + (n / 25);
     
 }
  
