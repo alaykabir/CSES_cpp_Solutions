@@ -36,9 +36,15 @@ int diag(int x){
 void solve(){
     int n;
     cin >> n;
- 
-    cout << (n / 5) + (n / 25);
     
+    int factor = 5;
+    int ans = 0;
+    while(factor <= n){
+        ans += (n / factor);
+        factor *= 5;
+    }
+    
+    cout << ans;
 }
  
 int32_t main(){
