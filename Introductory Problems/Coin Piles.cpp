@@ -32,9 +32,23 @@ using namespace std;
 void solve(){
     int a, b;
     cin >> a >> b;
+
+    if(a == 0 && b == 0){
+        cout << "YES" << endl;
+        return;
+    }
+    if(a == 0 || b == 0){
+        cout << "NO" << endl;
+        return;
+    }
+    if(abs(a - b) > min(a, b)){
+        cout << "NO" << endl;
+    }
+    else{
+        if((a + b) % 3) cout << "NO" << endl;
+        else cout << "YES" << endl;
+    }
     
-    if((a + b) % 3) cout << "NO" << endl;
-    else cout << "YES" << endl;
 }
  
 int32_t main(){
